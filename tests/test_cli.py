@@ -40,3 +40,26 @@ def test_bad_file_is_reported(tmp_path, capsys):
     (tmp_path / "gruplac_COL9.json").write_text("{not json", encoding="utf-8")
     assert main(["--gruplac", str(tmp_path / "gruplac_COL9.json"), "--out", str(tmp_path / "o")]) == 1
     assert json.loads(capsys.readouterr().out)["errors"] == 1
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+def test_products_output(tmp_path, gruplac, cvlacs, capsys, workers):
+    from cvgruplac_json import link
+    from cvgruplac_json.products import product_lines
+
+    (tmp_path / "g").mkdir()
+    (tmp_path / "c").mkdir()
+    (tmp_path / "g" / "gruplac_COL0000001.json").write_text(json.dumps(gruplac), encoding="utf-8")
+    for c in cvlacs:
+        (tmp_path / "c" / f"cvlac_{c['cod_rh']}.json").write_text(json.dumps(c), encoding="utf-8")
+    out = tmp_path / "out"
+    args = ["--gruplac", str(tmp_path / "g"), "--cvlac", str(tmp_path / "c"), "--out", str(out), "--products"]
+    assert main([*args, "--workers", str(workers), "--only", "gruplac"]) == 0
+    s = json.loads(capsys.readouterr().out)
+    with gzip.open(out / "products.jsonl.gz", "rt", encoding="utf-8") as f:
+        got = [json.loads(x) for x in f]
+    link([gruplac], cvlacs)
+    want, _ = product_lines([gruplac], cvlacs)
+    assert sorted(x["id"] for x in got) == sorted(x["id"] for x in want)
+    assert s["product_lines"] == len(got) and not (out / "cvlac").exists()
+    assert s["owners_in_group"] == 1 and s["owners_outside_membership"] == 1
