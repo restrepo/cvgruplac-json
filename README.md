@@ -94,6 +94,52 @@ CvLAC. Ejemplo de clave de un evento: `juevesdelaciencia|COL0008423|event|2023`.
 `product_hash.py` es una copia sin cambios del de cvlac-json y gruplac-json; `tests/product_hash_vectors.json` fija
 su resultado en los tres paquetes.
 
+## Un producto por línea: `--products`
+
+```bash
+cvgruplac-json --cvlac cvlac/ --gruplac gruplac/ --out unidos/ --products
+```
+
+Escribe además `unidos/products.jsonl.gz`, con una línea por producto distinto, también los que ningún grupo lista:
+
+```json
+{"id": "…", "kind": "work", "section": "Artículos", "title": "…", "year": "2019",
+ "groups": ["COL0008423"],
+ "owners": [{"cod_rh": "0001668438", "cvlac_id": "…", "group_status": "in_group"},
+            {"cod_rh": "0001376231", "cvlac_id": "…", "group_status": "in_group_other_author",
+             "candidate_groups": ["COL0008423"]}],
+ "scrapping_ids": [{"id": "…", "source": "cvlac"}, {"id": "…", "source": "gruplac", "group": "COL0008423"}],
+ "merged_by": ["product_hash", "doi"], "record_source": "cvlac", "record": {…}}
+```
+
+- **Qué se une.** Los registros que comparten un id de CvLAC (el `product_hash` de una persona: su CvLAC y los
+  GrupLAC que lo listan con ese id), o el mismo DOI con el mismo año y las mismas primeras 20 letras del título. Los
+  demás son una línea cada uno: productos del GrupLAC sin id de CvLAC, y productos del CvLAC que ningún grupo lista.
+- **`owners[].group_status`**, por qué el producto de esa persona está o no en un grupo:
+
+  | Valor | Significado |
+  | --- | --- |
+  | `in_group` | Un GrupLAC lo lista con el id de esta persona (`"verified": false` si su CvLAC no estaba entre las entradas). |
+  | `in_group_other_author` | Un grupo de la persona en ese año lo lista, con el id de otro integrante (unido por DOI). |
+  | `cvlac_only_section` | Sección que el GrupLAC no tiene (Par evaluador, Patentes, Secretos empresariales…). |
+  | `unmatchable_kind` | Proyecto o evento: el GrupLAC los lista sin autores. |
+  | `no_group` | La persona no es integrante de ningún GrupLAC. |
+  | `no_year` | Integrante de algún grupo, pero el producto no tiene año. |
+  | `member_not_reported` | Integrante de `candidate_groups` en el año del producto, y ninguno lo lista. |
+  | `outside_membership` | Integrante de algún grupo, pero no en el año del producto. |
+
+  `candidate_groups` sale de los periodos de vinculación de los integrantes; es una sugerencia y no se agrega a las
+  afiliaciones del registro.
+- **`record`**: el producto como lo escribe el CvLAC del primer dueño, si lo hay; si no, como lo escribe el primer
+  GrupLAC (`record_source`), sin su `id` ni sus `scrapping_ids`.
+- **`possible_duplicates.jsonl.gz`**: grupos de líneas de personas distintas, de productos que ningún grupo lista,
+  con el mismo título (20 letras o más), tipo y año, que no se unieron por no tener DOI en común. Pueden ser el
+  mismo producto en dos CV o productos distintos con el mismo título; no se unen.
+- Los productos de dos personas fuera de los grupos se unen solo por DOI: su id lleva el COD_RH de cada una.
+
+En Python: `cvgruplac_json.products.product_lines(gruplacs, cvlacs)`, sobre JSON ya unidos con `link`, da
+`(líneas, grupos de posibles duplicados)`.
+
 ## Desarrollo
 
 ```bash

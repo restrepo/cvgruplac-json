@@ -18,6 +18,10 @@ def _gruplac():
     return {
         "nro": "00000000000001",
         "col": "COL0000001",
+        "members": [
+            {"cod_rh": ANA, "start": {"year": 2015, "month": 1}, "end": None, "open_end": True},
+            {"cod_rh": BETO, "start": {"year": 2010, "month": 1}, "end": {"year": 2012, "month": 6}, "open_end": False},
+        ],
         "works": [
             {  # signed by both members and an external author
                 "id": None,
@@ -61,17 +65,19 @@ def _gruplac():
 
 
 def _cvlac(cod, titles):
+    """titles: (title, year) or (title, year, doi)."""
     return {
         "cod_rh": cod,
         "works": [
             {
                 "id": f"cvlac:{cod}:{i}",
-                "title": t,
-                "year_published": y,
+                "title": t[0],
+                "year_published": t[1],
+                "doi": t[2] if len(t) > 2 else None,
                 "cvlac": {"section": "Artículos"},
-                "authors": [author("X", cod, product_hash(t, cod, "work", y))],
+                "authors": [author("X", cod, product_hash(t[0], cod, "work", t[1]))],
             }
-            for i, (t, y) in enumerate(titles, 1)
+            for i, t in enumerate(titles, 1)
         ],
         "projects": [],
         "events": [
