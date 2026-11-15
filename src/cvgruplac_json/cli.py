@@ -44,7 +44,8 @@ def _read(path):
 
 def _write(data, path):
     tmp = path.with_name(path.name + ".tmp")
-    with (gzip.open if path.suffix == ".gz" else open)(tmp, "wt", encoding="utf-8") as f:
+    gz = {"compresslevel": 6} if path.suffix == ".gz" else {}  # gzip's default 9 is several times slower
+    with (gzip.open if gz else open)(tmp, "wt", encoding="utf-8", **gz) as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
     os.replace(tmp, path)
 
