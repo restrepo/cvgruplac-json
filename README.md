@@ -39,7 +39,7 @@ En Python:
 ```python
 from cvgruplac_json import link, link_gruplac, link_cvlac, id_hash
 
-index = link(gruplacs, cvlacs)   # listas de dicts de gruplac-json y cvlac-json, unidos en su lugar
+index = link(gruplacs, cvlacs)  # listas de dicts de gruplac-json y cvlac-json, unidos en su lugar
 ```
 
 ## Los identificadores
