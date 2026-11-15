@@ -1,0 +1,491 @@
+{
+ "source": "CvLAC and GrupLAC Sections: section names of 440,937 CvLACs and 7,170 GrupLACs, paired by name and checked against product_hash matches, 2026-11-14",
+ "sections": [
+  {
+   "cvlac": "Eventos",
+   "gruplac": "Eventos",
+   "kind": "event",
+   "where": "both"
+  },
+  {
+   "cvlac": "Trabajos dirigidos/tutorías",
+   "gruplac": "Trabajos dirigidos/turorías",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Artículos",
+   "gruplac": "Artículos publicados",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Proyectos",
+   "gruplac": "Proyectos",
+   "kind": "project",
+   "where": "both"
+  },
+  {
+   "cvlac": "Jurado en comités de evaluación",
+   "gruplac": "Jurado/Comisiones evaluadoras de trabajo de grado",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Par evaluador",
+   "gruplac": null,
+   "kind": "other",
+   "where": "cvlac"
+  },
+  {
+   "cvlac": "Cursos de corta duración",
+   "gruplac": "Curso de Corta Duración Dictados",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Capitulos de libro",
+   "gruplac": "Capítulos de libro publicados",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Textos en publicaciones no científicas",
+   "gruplac": "Otros artículos publicados",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Demás trabajos",
+   "gruplac": "Demás trabajos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Libros",
+   "gruplac": "Libros publicados",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Libros",
+   "gruplac": "Otros Libros publicados",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Participación en comités de evaluación",
+   "gruplac": "Participación en comités de evaluación",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Informes de investigación",
+   "gruplac": "Informes de investigación",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Documentos de trabajo",
+   "gruplac": "Documentos de trabajo",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Consultorías",
+   "gruplac": "Consultorías científico-tecnológicas",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Otra producción blibliográfica",
+   "gruplac": "Otra publicación divulgativa",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Informes técnicos",
+   "gruplac": "Informes técnicos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Ediciones/revisiones",
+   "gruplac": "Ediciones",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Apropiación social del conocimiento",
+   "gruplac": "Apropiación social del conocimiento",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Innovación de proceso o procedimiento",
+   "gruplac": "Innovaciones en Procesos y Procedimientos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Softwares",
+   "gruplac": "Softwares",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Redes de conocimiento especializado",
+   "gruplac": "Redes de Conocimiento Especializado",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Obras o productos",
+   "gruplac": "Obras o productos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Innovación generada en la gestión empresarial",
+   "gruplac": "Innovaciones generadas en la Gestión Empresarial",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Eventos artísticos",
+   "gruplac": "Eventos Artísticos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Prototipos",
+   "gruplac": "Prototipos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Producciones de contenido digital Audiovisual",
+   "gruplac": "Producciones de contenido digital - Audiovisual",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Boletines",
+   "gruplac": "Generación de Contenido Impreso",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Nueva secuencia genética",
+   "gruplac": "Nuevas secuencias genéticas",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Productos tecnológicos",
+   "gruplac": "Otros productos tecnológicos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Secretos empresariales",
+   "gruplac": null,
+   "kind": "other",
+   "where": "cvlac"
+  },
+  {
+   "cvlac": "Normas y Regulaciones",
+   "gruplac": "Regulaciones y Normas",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Producciones de contenido digital Sonoro",
+   "gruplac": "Producciones de contenido digital - Sonoro",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Libros de divulgación y/o Compilación de divulgación",
+   "gruplac": "Libros de divulgación y/o Compilación de divulgación",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Cartas, mapas y similares",
+   "gruplac": "Cartas, mapas o similares",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Concepto técnico",
+   "gruplac": "Conceptos técnicos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Libro de Formación",
+   "gruplac": "Libros de formación",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Talleres Creativos",
+   "gruplac": "Talleres de Creación",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Asesorías",
+   "gruplac": "Asesorías al Programa Ondas",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Patentes",
+   "gruplac": null,
+   "kind": "patent",
+   "where": "cvlac"
+  },
+  {
+   "cvlac": "Traducciones",
+   "gruplac": "Traducciones",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Publicaciones editoriales no especializadas",
+   "gruplac": "Publicaciones editoriales no especializadas",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Producción de estrategias y contenidos transmedia",
+   "gruplac": "Divulgación Pública de la Ciencia producción de estrategias y contenidos transmedia",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Empresas de base tecnológica",
+   "gruplac": "Empresas de base tecnológica",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Desarrollos web",
+   "gruplac": "Desarrollo web",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Diseño industrial",
+   "gruplac": "Diseños industriales",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Manuales y Guías Especializadas",
+   "gruplac": "Manuales y Guías Especializadas",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Signos distintivos",
+   "gruplac": "Signos distintivos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Producciones de contenido digital Recursos gráficos",
+   "gruplac": "Producciones de contenido digital - Recursos gráficos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Planta piloto",
+   "gruplac": "Plantas piloto",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Registros de acuerdo de licencia",
+   "gruplac": null,
+   "kind": "other",
+   "where": "cvlac"
+  },
+  {
+   "cvlac": "Libro de creación (Piloto)",
+   "gruplac": null,
+   "kind": "work",
+   "where": "cvlac"
+  },
+  {
+   "cvlac": "Notas científicas",
+   "gruplac": "Notas científicas",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Reglamentos",
+   "gruplac": "Reglamentos técnicos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Nuevos registros científicos",
+   "gruplac": "Nuevos registros científicos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Industrias Creativas y culturales",
+   "gruplac": "Industrias creativas y culturales",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Variedad vegetal",
+   "gruplac": "Nuevas variedades vegetal",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Protocolos de vigilancia epidemiológica",
+   "gruplac": "Protocolos de vigilancia epidemiológica",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Esquemas de trazado de circuitos integrados",
+   "gruplac": "Esquemas de trazados de circuito integrado",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Traducciones Filológicas y Edición de Fuentes",
+   "gruplac": "Traducciones Filológicas y Edición de Fuentes",
+   "kind": "work",
+   "where": "both"
+  },
+  {
+   "cvlac": "Productos nutracéuticos",
+   "gruplac": "Productos nutracéuticos",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Maquetas",
+   "gruplac": null,
+   "kind": "other",
+   "where": "cvlac"
+  },
+  {
+   "cvlac": "Variedad animal",
+   "gruplac": "Nuevas variedades animal",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Poblaciones mejoradas de razas pecuarias",
+   "gruplac": "Poblaciones mejoradas de razas pecuarias",
+   "kind": "other",
+   "where": "both"
+  },
+  {
+   "cvlac": "Estancias posdoctorales",
+   "gruplac": null,
+   "kind": "other",
+   "where": "cvlac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Curso de maestría",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Generación de Contenido Multimedia",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Generación de Contenido Virtual",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Estrategias Pedagógicas para el fomento a la CTI",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Curso de doctorado",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Otro programa académico",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Curso especializado de extensión",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Programa académico de maestría",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Espacios de Participación Ciudadana",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Estrategias de Comunicación del Conocimiento",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Programa académico de doctorado",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Generaciónes de contenido de audio",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Participación Ciudadana en Proyectos de CTI",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Guias de práctica clínica",
+   "kind": "other",
+   "where": "gruplac"
+  },
+  {
+   "cvlac": null,
+   "gruplac": "Proyectos de ley",
+   "kind": "other",
+   "where": "gruplac"
+  }
+ ]
+}
