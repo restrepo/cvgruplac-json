@@ -4,6 +4,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-15
+
 ### Added
 - `--products`: `products.jsonl.gz`, one line per distinct product of the GrupLACs and CvLACs, including those no
   group lists. Records are merged when they share a cvlac id or a DOI with the same year and title start (union-find);
@@ -25,5 +27,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
   product_hash recipe with the group code or the COD_RH and the extra kind `event`. Section pairing of CvLAC and
   GrupLAC in `data/sections.json`. Gzipped outputs are written at level 6.
 
-[Unreleased]: https://github.com/restrepo/cvgruplac-json/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/restrepo/cvgruplac-json/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/restrepo/cvgruplac-json/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/restrepo/cvgruplac-json/releases/tag/v0.1.0
