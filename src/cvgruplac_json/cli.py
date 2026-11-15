@@ -12,6 +12,7 @@ OUT/possible_duplicates.jsonl.gz, groups of lines of different people with the s
 """
 
 import argparse
+import gc
 import gzip
 import json
 import multiprocessing as mp
@@ -114,6 +115,7 @@ def _map(fn, items, workers, label, log):
     """Results of fn over items, with forked workers when possible (they share _STATE without copying it)."""
     t0, n = time.time(), len(items)
     if workers > 1 and "fork" in mp.get_all_start_methods():
+        gc.freeze()  # the garbage collector of the workers would otherwise touch, and so copy, the shared objects
         pool = mp.get_context("fork").Pool(workers)
         it = pool.imap_unordered(fn, items, chunksize=16)
     else:
@@ -127,6 +129,7 @@ def _map(fn, items, workers, label, log):
         if pool:
             pool.close()
             pool.join()
+            gc.unfreeze()
 
 
 def run(cvlac, gruplac, out, workers=4, only=None, products=False, log=print):
