@@ -4,7 +4,7 @@ import pytest
 
 from conftest import ANA, ART, BETO, _cvlac, author
 from cvgruplac_json import link, product_hash
-from cvgruplac_json.products import doi_of, owner_status, product_lines
+from cvgruplac_json.products import doi_of, how_match, merge_authors, name_words, owner_status, product_lines
 
 CARLA = "0000000003"  # in no group
 SHARED = "Shared paper with an outside colleague"
@@ -120,6 +120,44 @@ def test_other_member_of_the_group_lists_it(gruplac):
         "candidate_groups": ["COL0000001"],
     }
     assert ln["merged_by"] == ["product_hash", "doi"]
+    # the record is Ana's CvLAC entry; Beto (in the GrupLAC record, CvLAC absent) and Carla (by DOI) join it
+    assert [(a["id"], a.get("cvgruplac")) for a in ln["record"]["authors"]] == [
+        (ANA, None),
+        (BETO, {"merged_from": product_hash(ART, BETO, "work", 2017), "name_match": None}),
+        (CARLA, {"merged_from": product_hash(ART, CARLA, "work", 2017), "name_match": None}),
+    ]
+    assert ln["record"]["authors_count"] == 3
+
+
+def test_merged_owner_replaces_the_coauthor_with_her_name(gruplac):
+    cvs = [_cvlac(ANA, [(ART, 2017, DOI)]), _cvlac(CARLA, [(ART, 2017, DOI)])]
+    cvs[0]["works"][0]["authors"] += [author("OTRO"), author("Pérez Gómez Carla")]
+    cvs[0]["works"][0]["authors_count"] = 3
+    cvs[1]["works"][0]["authors"][0]["full_name"] = "CARLA PEREZ GOMEZ"
+    link([gruplac], cvs)
+    ln = next(x for x in product_lines([gruplac], cvs)[0] if x["id"] == product_hash(ART, ANA, "work", 2017))
+    got = ln["record"]["authors"]
+    assert [a["id"] for a in got] == [ANA, None, CARLA, BETO] and ln["record"]["authors_count"] == 4
+    assert got[2]["full_name"] == "CARLA PEREZ GOMEZ" and got[2]["cvgruplac"]["name_match"] == "words"
+
+
+def test_gruplac_record_keeps_its_member_authors(gruplac):
+    g = copy.deepcopy(gruplac)
+    link([g], [])
+    ln = next(x for x in product_lines([g], [])[0] if x["id"] == product_hash(ART, ANA, "work", 2017))
+    assert [a["id"] for a in ln["record"]["authors"]] == [ANA, BETO, None]  # no author added twice
+
+
+def test_merge_authors():
+    rec = {"authors": [author("ANA", ANA), author("J PEREZ"), author("JUAN PEREZ"), author("JUANA PEREZ")]}
+    got = merge_authors(rec, [("h1", author("Ana", ANA, "h1")), ("h2", author("Juan Pérez", BETO, "h2"))])
+    assert got["authors"][0]["product_hash"] == "h1"  # same COD_RH: filled, not added
+    assert got["authors"][2]["id"] == BETO and got["authors"][2]["cvgruplac"]["name_match"] == "exact"
+    assert got["authors_count"] == 4 and "authors_count" not in rec and rec["authors"][2]["id"] is None
+    tied = merge_authors({"authors": [author("PEREZ JUAN"), author("JUAN PEREZ X")]}, [("h", author("Juan Perez", BETO, "h"))])
+    assert [a["id"] for a in tied["authors"]] == [BETO, None]  # words beats nothing: one hit
+    assert how_match(name_words("Gómez Girlado Ana"), name_words("GOMEZ GIRALDO ANA")) == "spelling"
+    assert how_match(name_words("A Perez"), name_words("Ana Perez")) is None
 
 
 def test_helpers():

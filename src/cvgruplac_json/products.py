@@ -22,11 +22,17 @@ candidate_groups (for in_group_other_author, member_not_reported and unmatchable
 periods, kept apart from the record's affiliations.
 
 record is the product as the first owner's CvLAC writes it when there is one, else as the first GrupLAC writes it,
-without its own id and scrapping_ids.
+without its own id and scrapping_ids. On a merged line its authors also hold every other owner: the author entry from
+the owner's CvLAC (or, when that CvLAC is absent, from the GrupLAC) fills the record's author with the same COD_RH,
+else replaces the record's author without COD_RH whose name matches (the same words, the same words in another order
+or one name inside the other with three words or more, or one word off by a letter, as gruplac-json matches members),
+else is appended; it says so in "cvgruplac": {"merged_from": cvlac id, "name_match": exact|words|spelling|null}.
+authors_count is raised to the number of authors when it was lower.
 """
 
 import json
 import re
+import unicodedata
 import zlib
 
 from .link import SECTIONS, products, record_title, record_year
@@ -76,6 +82,81 @@ def owner_status(cod, kind, section, year, periods):
     return ("member_not_reported", cands) if cands else ("outside_membership", [])
 
 
+RANK = {"exact": 0, "words": 1, "spelling": 2}
+
+
+def name_words(name):
+    s = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", " ", s).split()
+
+
+def _osa(a, b):
+    """Edit distance with adjacent transpositions (optimal string alignment)."""
+    d = [[i + j if i * j == 0 else 0 for j in range(len(b) + 1)] for i in range(len(a) + 1)]
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            d[i][j] = min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] != b[j - 1]))
+            if i > 1 and j > 1 and a[i - 1] == b[j - 2] and a[i - 2] == b[j - 1]:
+                d[i][j] = min(d[i][j], d[i - 2][j - 2] + 1)
+    return d[-1][-1]
+
+
+def how_match(a, b):
+    """How the words of two names match: exact, words, spelling or None (gruplac-json's member matching)."""
+    if not a or not b:
+        return None
+    if a == b:
+        return "exact"
+    sa, sb = set(a), set(b)
+    if sa == sb or (min(len(sa), len(sb)) >= 3 and (sa <= sb or sb <= sa)):
+        return "words"
+    if len(a) == len(b) >= 2:
+        diff = [(x, y) for x, y in zip(a, b, strict=True) if x != y]
+        if len(diff) == 1 and min(len(diff[0][0]), len(diff[0][1])) >= 4 and _osa(*diff[0]) <= 1:
+            return "spelling"
+    return None
+
+
+def owner_author(rec, cod):
+    return next((a for a in rec.get("authors") or [] if a.get("id") == cod), None)
+
+
+def merge_authors(rec, others):
+    """rec with the author entries of the other owners merged in (module docstring); others: [(cvlac id, author)]."""
+    authors = [dict(a) for a in rec.get("authors") or []]
+    for cid, e in others:
+        if not e or not e.get("id"):
+            continue
+        same = next((a for a in authors if a.get("id") == e["id"]), None)
+        if same:
+            if not same.get("product_hash"):
+                same["product_hash"] = e.get("product_hash")
+            continue
+        w = name_words(e.get("full_name"))
+        hits = [(i, h) for i, a in enumerate(authors) if not a.get("id") and (h := how_match(name_words(a.get("full_name")), w))]
+        if hits:
+            best = min(RANK[h] for _, h in hits)
+            hits = [x for x in hits if RANK[x[1]] == best]
+        i, how = hits[0] if len(hits) == 1 else (None, None)
+        new = {**e, "cvgruplac": {"merged_from": cid, "name_match": how}}
+        if i is None:
+            authors.append(new)
+        else:
+            authors[i] = new
+    out = {**rec, "authors": authors}
+    if len(authors) > (rec.get("authors_count") or 0):
+        out["authors_count"] = len(authors)
+    return out
+
+
+def _pack(x):
+    return zlib.compress(json.dumps(x, ensure_ascii=False).encode())
+
+
+def _unpack(b):
+    return json.loads(zlib.decompress(b))
+
+
 def _body(rec):
     return {k: v for k, v in rec.items() if k not in ("id", "scrapping_ids")}
 
@@ -109,13 +190,15 @@ def gruplac_summary(gruplac):
     for section, kind, rec in products(gruplac):
         by_id = {a.get("product_hash"): a.get("id") for a in rec.get("authors") or [] if a.get("product_hash")}
         cv = [(x["id"], by_id.get(x["id"]), "verified" not in x) for x in rec["scrapping_ids"] if x["source"] == "cvlac"]
+        unver = {x["id"] for x in rec["scrapping_ids"] if x["source"] == "cvlac" and "verified" in x}
+        auth = [(a["product_hash"], _pack(a)) for a in rec.get("authors") or [] if a.get("product_hash") in unver]
         dk = doi_key(rec)
         if not cv and not dk:
             sids = [{"id": rec["id"], "source": "gruplac", "group": group}]
             lines.append(_line(rec["id"], kind, section, rec, "gruplac", [group], [], sids, []))
             continue
         body = None if any(v for *_, v in cv) else zlib.compress(json.dumps([section, kind, rec]).encode())
-        summaries.append((group, rec["id"], cv, dk, body))
+        summaries.append((group, rec["id"], cv, dk, body, auth))
     return member_periods(gruplac), lines, summaries
 
 
@@ -127,6 +210,7 @@ class ProductBuilder:
         self.gr = []  # (group, gruplac id, [(cvlac id, cod_rh, verified)], body)
         self.doi = {}  # doi key -> [node]
         self.cod_of = {}  # cvlac id -> cod_rh, for owners not seen in a GrupLAC
+        self.authors = {}  # cvlac id -> packed author entry, for owners merged into another owner's line
         self.clusters = None
 
     def _n(self, key):
@@ -157,7 +241,9 @@ class ProductBuilder:
         periods, lines, summaries = summary
         for cod, per in periods.items():
             self.periods.setdefault(cod, []).extend(per)
-        for group, gid, cv, dk, body in summaries:
+        for group, gid, cv, dk, body, auth in summaries:
+            for cid, a in auth:
+                self.authors.setdefault(cid, a)
             g = self._n("g:" + gid)
             for cid, cod, _ in cv:
                 self._union(g, self._n("c:" + cid))
@@ -204,7 +290,28 @@ class ProductBuilder:
             c["id"] = c["gr"][0][1] if c["gr"] else c["primary"]
         self.clusters = roots
 
+    def wanted_authors(self):
+        """{cod_rh} of the CvLACs that hold an author entry cvlac_authors must collect (after merge)."""
+        return {o["cod"] for c in self.clusters.values() for cid, o in c["cv"].items() if o["verified"] and cid != c["primary"]}
+
+    def cvlac_authors(self, cvlac):
+        """[(cvlac id, packed author entry)] of a linked CvLAC's products merged into a line another record writes."""
+        cod, out = cvlac["cod_rh"], []
+        for _, _, rec in products(cvlac):
+            i = self.node.get("c:" + rec["id"])
+            c = self.clusters.get(self._find(i)) if i is not None else None
+            if c and c["primary"] != rec["id"] and (a := owner_author(rec, cod)):
+                out.append((rec["id"], _pack(a)))
+        return out
+
+    def add_authors(self, entries):
+        for cid, a in entries:
+            self.authors[cid] = a
+
     def _cluster_line(self, c, section, kind, rec, source, periods):
+        others = [(cid, _unpack(self.authors[cid])) for cid in c["cv"] if cid in self.authors]
+        if others:
+            rec = merge_authors(rec, others)
         year = record_year(rec)
         owners = []
         for cid, o in c["cv"].items():
@@ -260,6 +367,8 @@ def product_lines(gruplacs, cvlacs):
     for g in gruplacs:
         lines += b.add_gruplac(gruplac_summary(g))
     b.merge()
+    for c in cvlacs:
+        b.add_authors(b.cvlac_authors(c))
     for c in cvlacs:
         for ln, key in b.cvlac_lines(c):
             lines.append(ln)

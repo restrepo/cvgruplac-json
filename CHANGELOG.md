@@ -4,6 +4,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Changed
+- `--products`: on a line that merges several records, `record.authors` also holds every other owner. The owner's
+  author entry (from their CvLAC, or from the GrupLAC when their CvLAC is absent) fills the author with the same
+  COD_RH, else replaces the author without COD_RH whose name matches (as gruplac-json matches members), else is
+  appended; such entries carry `cvgruplac: {merged_from, name_match}`, and `authors_count` is raised when it was
+  lower. The CvLACs that hold those entries are read once more before the third pass.
+
 ## [0.2.0] - 2026-11-15
 
 ### Added
