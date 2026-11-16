@@ -6,6 +6,8 @@ Inputs are folders (their cvlac_*.json[.gz] or gruplac_*.json[.gz] files) or sin
 1. read every CvLAC and keep its owner's product_hashes (and, with --products, its DOIs);
 2. link every GrupLAC (link_gruplac) and write it to OUT/gruplac/;
 3. link every CvLAC (link_cvlac) with the GrupLAC products found in pass 2 and write it to OUT/cvlac/.
+With --products, the CvLACs whose products join a line another record writes are read once more before pass 3, for
+their author entries (merged into that line's record).
 Outputs keep the input's name and compression; inputs are not changed. OUT/cvgruplac_summary.json has the counts.
 --products also writes OUT/products.jsonl.gz, one line per distinct product (products.py), and
 OUT/possible_duplicates.jsonl.gz, groups of lines of different people with the same title, kind and year.
@@ -93,6 +95,15 @@ def _gruplac(path):
         return [], Counter(), None, f"{path}: {type(e).__name__}: {e}"
 
 
+def _authors(path):
+    try:
+        d = _read(path)
+        link_cvlac(d)
+        return _STATE["builder"].cvlac_authors(d), None
+    except Exception as e:
+        return [], f"{path}: {type(e).__name__}: {e}"
+
+
 def _cvlac(path):
     try:
         d = _read(path)
@@ -171,6 +182,12 @@ def run(cvlac, gruplac, out, workers=4, only=None, products=False, log=print):
             builder.merge()
             log(f"merged: {len(builder.clusters)} products with GrupLAC entries or DOI matches")
         _STATE.update(builder=builder, write_cvlac=only != "gruplac")
+        if builder and cv:
+            need = [cv[k] for k in sorted(builder.wanted_authors() & cv.keys())]
+            for entries, err in _map(_authors, need, workers, "authors of merged lines", log):
+                errors += [err] if err else []
+                builder.add_authors(entries)
+            log(f"author entries to merge: {len(builder.authors)}")
         dups = {}
         if cv and (only != "gruplac" or products):
             if only != "gruplac":

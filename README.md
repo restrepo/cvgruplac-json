@@ -132,6 +132,17 @@ Escribe además `unidos/products.jsonl.gz`, con una línea por producto distinto
   afiliaciones del registro.
 - **`record`**: el producto como lo escribe el CvLAC del primer dueño, si lo hay; si no, como lo escribe el primer
   GrupLAC (`record_source`), sin su `id` ni sus `scrapping_ids`.
+- **Autores de una línea unida.** `record.authors` reúne a todos los dueños de la línea. La entrada de autor de cada
+  otro dueño (la de su CvLAC o, si su CvLAC no está entre las entradas, la del GrupLAC):
+  - completa al autor con el mismo COD_RH, si ya está;
+  - si no, reemplaza al autor sin COD_RH cuyo nombre coincide (las mismas palabras, en otro orden, un nombre dentro
+    del otro con tres palabras o más, o una palabra con una letra distinta, como gruplac-json identifica a los
+    integrantes), si es uno solo;
+  - si no, se agrega al final.
+
+  Esas entradas llevan `"cvgruplac": {"merged_from": <id de CvLAC>, "name_match": "exact" | "words" | "spelling" | null}`,
+  y `authors_count` sube si era menor que el número de autores. Por eso los CvLAC de esos dueños se leen una vez más
+  antes de la tercera pasada.
 - **`possible_duplicates.jsonl.gz`**: grupos de líneas de personas distintas, de productos que ningún grupo lista,
   con el mismo título (20 letras o más), tipo y año, que no se unieron por no tener DOI en común. Pueden ser el
   mismo producto en dos CV o productos distintos con el mismo título; no se unen.
