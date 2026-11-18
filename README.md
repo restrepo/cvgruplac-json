@@ -94,6 +94,27 @@ CvLAC. Ejemplo de clave de un evento: `juevesdelaciencia|COL0008423|event|2023`.
 `product_hash.py` es una copia sin cambios del de cvlac-json y gruplac-json; `tests/product_hash_vectors.json` fija
 su resultado en los tres paquetes.
 
+## El tipo de Minciencias
+
+Cada producto recibe también, como última entrada de `types` (que se crea si el producto no la tenía), su tipo en el
+modelo de medición de Minciencias:
+
+```json
+{"provenance": "cvgruplac", "source": "minciencias", "type": "Artículos de investigación", "level": 1}
+```
+
+- Los nombres son los tipos `minciencias` de nivel 1 de ImpactU (`Artículos de investigación`, `Capítulos de libro`,
+  `Tesis de maestria`, `Consultoría científico-técnica`, …).
+- La tabla [`data/minciencias_types.json`](src/cvgruplac_json/data/minciencias_types.json) va de la sección y el tipo
+  del CvLAC o GrupLAC (el nivel más profundo de `types` en las obras, `type` en los demás productos) al tipo de
+  Minciencias; `"*"` vale para cualquier otro tipo de la sección.
+- Los productos sin equivalente en Minciencias llevan `"type": ""`: eventos, proyectos, patentes, jurados, comités de
+  evaluación, par evaluador, cursos de corta duración, traducciones, cartas y mapas, prólogos y otra producción
+  bibliográfica, variedades, entre otros.
+- La tabla se comprobó con los productos de la UdeA en ImpactU que comparten id de Scienti con un CvLAC o GrupLAC: en
+  el 88.6 % de 73,355 productos el tipo de ImpactU es el de la tabla. Los libros resultado de investigación se reparten
+  casi por igual entre `Libros de investigación` y `Libros`.
+
 ## Un producto por línea: `--products`
 
 ```bash

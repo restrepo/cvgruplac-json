@@ -4,6 +4,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- Every product gets its Minciencias type as the last entry of `types`:
+  `{"provenance": "cvgruplac", "source": "minciencias", "type": …, "level": 1}`, with ImpactU's level-1 names, from
+  the section and type in `data/minciencias_types.json`; `"type": ""` when Minciencias has no equivalent (events,
+  projects, patents, juries, short courses, translations, …). Library: `cvgruplac_json.minciencias`.
+
 ## [0.3.0] - 2026-11-16
 
 ### Changed

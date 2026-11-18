@@ -1,0 +1,371 @@
+{
+ "about": "CvLAC/GrupLAC section -> {type: Minciencias product type}; '*' for any other type; '' = no Minciencias equivalent. Names are ImpactU's level-1 'minciencias' types.",
+ "sections": {
+  "Apropiación social del conocimiento": {
+   "*": "Procesos de apropiación social del conocimiento para el fortalecimiento o solución de asuntos",
+   "Apropiación social del conocimiento - Proceso de Apropiación Social del Conocimiento para la generación de insumos de política pública y normatividad": "Procesos de apropiación social del conocimiento para la generación de insumos",
+   "Apropiación social del conocimiento - Proceso de Apropiación Social del Conocimiento resultado del trabajo conjunto entre un Centro de Ciencia y un grupo de investigación": "Procesos de apropiación resultado del trabajo conjunto entre un Centro de Ciencia y un grupo",
+   "Apropiación social del conocimiento - Productos de apropiación social del conocimiento resultado del trabajo conjunto entre un Centro de Ciencia y un grupo de investigación": "Procesos de apropiación resultado del trabajo conjunto entre un Centro de Ciencia y un grupo"
+  },
+  "Artículos": {
+   "*": "Artículos de investigación"
+  },
+  "Artículos publicados": {
+   "*": "Artículos de investigación"
+  },
+  "Asesorías": {
+   "*": ""
+  },
+  "Boletines": {
+   "*": "Boletín divulgativo de resultado de investigación"
+  },
+  "Capitulos de libro": {
+   "*": "Capítulos de libro de investigación",
+   "Capitulos de libro": "Capítulos de libro",
+   "Otro capítulo de libro publicado": "Capítulos de libro"
+  },
+  "Capítulos de libro publicados": {
+   "*": "Capítulos de libro de investigación",
+   "Otro capítulo de libro publicado": "Capítulos de libro"
+  },
+  "Cartas, mapas o similares": {
+   "*": ""
+  },
+  "Cartas, mapas y similares": {
+   "*": ""
+  },
+  "Concepto técnico": {
+   "*": "Conceptos técnicos"
+  },
+  "Conceptos técnicos": {
+   "*": "Conceptos técnicos"
+  },
+  "Consultorías": {
+   "*": "Consultoría científico-técnica",
+   "Producción técnica - Consultoría Científico Tecnológica e Informe Técnico - Consultoría en artes, arquitectura y diseño": "Consultoría en artes, arquitectura y diseño"
+  },
+  "Consultorías científico-tecnológicas": {
+   "*": "Consultoría científico-técnica"
+  },
+  "Curso de Corta Duración Dictados": {
+   "*": ""
+  },
+  "Curso de doctorado": {
+   "*": "Apoyo creación de cursos"
+  },
+  "Curso de maestría": {
+   "*": "Apoyo creación de cursos"
+  },
+  "Curso especializado de extensión": {
+   "*": "Apoyo creación de cursos"
+  },
+  "Cursos de corta duración": {
+   "*": ""
+  },
+  "Demás trabajos": {
+   "*": ""
+  },
+  "Desarrollo web": {
+   "*": "Desarrollos Web"
+  },
+  "Desarrollos web": {
+   "*": "Desarrollos Web"
+  },
+  "Diseño industrial": {
+   "*": "Diseño Industrial"
+  },
+  "Diseños industriales": {
+   "*": "Diseño Industrial"
+  },
+  "Divulgación Pública de la Ciencia producción de estrategias y contenidos transmedia": {
+   "*": "Producción de estrategias y contenidos Transmedia"
+  },
+  "Documentos de trabajo": {
+   "*": "Documento de trabajo"
+  },
+  "Ediciones": {
+   "*": "Edicion"
+  },
+  "Ediciones/revisiones": {
+   "*": "Edicion"
+  },
+  "Empresas de base tecnológica": {
+   "*": "Empresa de base tecnológica"
+  },
+  "Espacios de Participación Ciudadana": {
+   "*": "Espacios de participación ciudadana"
+  },
+  "Esquemas de trazado de circuitos integrados": {
+   "*": ""
+  },
+  "Esquemas de trazados de circuito integrado": {
+   "*": ""
+  },
+  "Estancias posdoctorales": {
+   "*": ""
+  },
+  "Estrategias Pedagógicas para el fomento a la CTI": {
+   "*": "Estrategias pedagógicas para el fomento a la CTI"
+  },
+  "Estrategias de Comunicación del Conocimiento": {
+   "*": "Estrategia de comunicación del conocimiento"
+  },
+  "Eventos": {
+   "*": ""
+  },
+  "Eventos Artísticos": {
+   "*": ""
+  },
+  "Eventos artísticos": {
+   "*": ""
+  },
+  "Generación de Contenido Impreso": {
+   "*": "Generación de contenido impresa",
+   "Boletín": "Boletín divulgativo de resultado de investigación"
+  },
+  "Generación de Contenido Multimedia": {
+   "*": "Generación de contenido multimedia"
+  },
+  "Generación de Contenido Virtual": {
+   "*": "Generación de contenido virtual"
+  },
+  "Generaciónes de contenido de audio": {
+   "*": "Generación de contenido de audio"
+  },
+  "Guias de práctica clínica": {
+   "*": "Regulación y norma práctica clínica"
+  },
+  "Industrias Creativas y culturales": {
+   "*": "Empresas creativas y culturales"
+  },
+  "Industrias creativas y culturales": {
+   "*": "Empresas creativas y culturales"
+  },
+  "Informes de investigación": {
+   "*": "Informe Final de Investigación"
+  },
+  "Informes técnicos": {
+   "*": "Informe técnico final"
+  },
+  "Innovaciones en Procesos y Procedimientos": {
+   "*": "Innovaciones en procedimiento y servicio"
+  },
+  "Innovaciones generadas en la Gestión Empresarial": {
+   "*": "Innovacion de gestion empresarial"
+  },
+  "Innovación de proceso o procedimiento": {
+   "*": "Innovaciones en procedimiento y servicio"
+  },
+  "Innovación generada en la gestión empresarial": {
+   "*": "Innovacion de gestion empresarial"
+  },
+  "Jurado en comités de evaluación": {
+   "*": ""
+  },
+  "Jurado/Comisiones evaluadoras de trabajo de grado": {
+   "*": ""
+  },
+  "Libro de Formación": {
+   "*": "Libros"
+  },
+  "Libro de creación (Piloto)": {
+   "*": "Libros"
+  },
+  "Libros": {
+   "*": "Libros",
+   "Libro resultado de investigación": "Libros de investigación"
+  },
+  "Libros de divulgación y/o Compilación de divulgación": {
+   "*": "Libros de Divulgación de investigación y/o Compilación de Divulgación"
+  },
+  "Libros de formación": {
+   "*": "Libros"
+  },
+  "Libros publicados": {
+   "*": "Libros de investigación"
+  },
+  "Manuales y Guías Especializadas": {
+   "*": "Libros"
+  },
+  "Maquetas": {
+   "*": ""
+  },
+  "Normas y Regulaciones": {
+   "*": "Regulación y norma",
+   "Producción técnica - Regulación, norma, reglamento o legislación - Acto legislativo": "Regulación y norma acto legislativo",
+   "Producción técnica - Regulación, norma, reglamento o legislación - Guía de práctica clínica": "Regulación y norma práctica clínica",
+   "Producción técnica - Regulación, norma, reglamento o legislación - Manuales y modelos de atención a víctimas": "Regulación y norma manuales y modelos de atención diferencial a víctimas",
+   "Producción técnica - Regulación, norma, reglamento o legislación - Protocolo de atención a pacientes": "Regulación y norma protocolos de atención a usuarios/víctimas (pacientes)",
+   "Producción técnica - Regulación, norma, reglamento o legislación - Proyecto de ley": "Regulación y norma proyecto de ley"
+  },
+  "Notas científicas": {
+   "*": "Notas científica"
+  },
+  "Nueva secuencia genética": {
+   "*": "Nueva secuencia genética"
+  },
+  "Nuevas secuencias genéticas": {
+   "*": "Nueva secuencia genética"
+  },
+  "Nuevas variedades animal": {
+   "*": ""
+  },
+  "Nuevas variedades vegetal": {
+   "*": ""
+  },
+  "Nuevos registros científicos": {
+   "*": "Nuevo registro científico"
+  },
+  "Obras o productos": {
+   "*": "Obras o productos de arte, arquitectura y diseño"
+  },
+  "Otra producción blibliográfica": {
+   "*": ""
+  },
+  "Otra publicación divulgativa": {
+   "*": ""
+  },
+  "Otro programa académico": {
+   "*": "Apoyo de programas"
+  },
+  "Otros Libros publicados": {
+   "*": "Libros"
+  },
+  "Otros artículos publicados": {
+   "*": "Artículos"
+  },
+  "Otros productos tecnológicos": {
+   "*": ""
+  },
+  "Par evaluador": {
+   "*": ""
+  },
+  "Participación Ciudadana en Proyectos de CTI": {
+   "*": "Participación ciudadana en proyectos de CTI"
+  },
+  "Participación en comités de evaluación": {
+   "*": ""
+  },
+  "Patentes": {
+   "*": ""
+  },
+  "Planta piloto": {
+   "*": "Planta Piloto"
+  },
+  "Plantas piloto": {
+   "*": "Planta Piloto"
+  },
+  "Poblaciones mejoradas de razas pecuarias": {
+   "*": ""
+  },
+  "Producciones de contenido digital - Audiovisual": {
+   "*": "Producciones de contenido digital"
+  },
+  "Producciones de contenido digital - Recursos gráficos": {
+   "*": "Producciones de contenido digital"
+  },
+  "Producciones de contenido digital - Sonoro": {
+   "*": "Producciones de contenido digital"
+  },
+  "Producciones de contenido digital Audiovisual": {
+   "*": "Producciones de contenido digital"
+  },
+  "Producciones de contenido digital Recursos gráficos": {
+   "*": "Producciones de contenido digital"
+  },
+  "Producciones de contenido digital Sonoro": {
+   "*": "Producciones de contenido digital"
+  },
+  "Producción de estrategias y contenidos transmedia": {
+   "*": "Producción de estrategias y contenidos Transmedia"
+  },
+  "Productos nutracéuticos": {
+   "*": ""
+  },
+  "Productos tecnológicos": {
+   "*": ""
+  },
+  "Programa académico de doctorado": {
+   "*": "Apoyo de programas"
+  },
+  "Programa académico de maestría": {
+   "*": "Apoyo de programas"
+  },
+  "Protocolos de vigilancia epidemiológica": {
+   "*": "Regulación y norma protocolos de vigilancia epidemiológica"
+  },
+  "Prototipos": {
+   "*": "Prototipo Industrial"
+  },
+  "Proyectos": {
+   "*": ""
+  },
+  "Proyectos de ley": {
+   "*": "Regulación y norma proyecto de ley"
+  },
+  "Publicaciones editoriales no especializadas": {
+   "*": "Publicaciones editoriales no especializadas"
+  },
+  "Redes de Conocimiento Especializado": {
+   "*": "Red de conocimiento especializado"
+  },
+  "Redes de conocimiento especializado": {
+   "*": "Red de conocimiento especializado"
+  },
+  "Registros de acuerdo de licencia": {
+   "*": ""
+  },
+  "Reglamentos": {
+   "*": "Regulación Norma o Reglamento"
+  },
+  "Reglamentos técnicos": {
+   "*": "Regulación Norma o Reglamento"
+  },
+  "Regulaciones y Normas": {
+   "*": "Regulación y norma",
+   "Acto legislativo": "Regulación y norma acto legislativo",
+   "Manuales y modelos de atención a víctimas": "Regulación y norma manuales y modelos de atención diferencial a víctimas",
+   "Protocolo de atención a pacientes": "Regulación y norma protocolos de atención a usuarios/víctimas (pacientes)"
+  },
+  "Secretos empresariales": {
+   "*": "Secreto empresarial"
+  },
+  "Signos distintivos": {
+   "*": "Signos Distintivos"
+  },
+  "Softwares": {
+   "*": "Software"
+  },
+  "Talleres Creativos": {
+   "*": "Talleres de creación"
+  },
+  "Talleres de Creación": {
+   "*": "Talleres de creación"
+  },
+  "Textos en publicaciones no científicas": {
+   "*": "Artículos"
+  },
+  "Trabajos dirigidos/turorías": {
+   "*": "Tesis de pregrado",
+   "Tesis de doctorado": "Tesis de doctorado",
+   "Trabajo de grado de maestría o especialidad clínica": "Tesis de maestria"
+  },
+  "Trabajos dirigidos/tutorías": {
+   "*": "Tesis de pregrado",
+   "Trabajos dirigidos/Tutorías - Tesis de doctorado": "Tesis de doctorado",
+   "Trabajos dirigidos/Tutorías - Trabajo de grado de maestría o especialidad clínica": "Tesis de maestria"
+  },
+  "Traducciones": {
+   "*": ""
+  },
+  "Traducciones Filológicas y Edición de Fuentes": {
+   "*": ""
+  },
+  "Variedad animal": {
+   "*": ""
+  },
+  "Variedad vegetal": {
+   "*": ""
+  }
+ }
+}
