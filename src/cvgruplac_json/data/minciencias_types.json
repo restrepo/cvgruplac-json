@@ -169,7 +169,7 @@
    "*": "Libros"
   },
   "Libro de creación (Piloto)": {
-   "*": "Libros"
+   "*": ""
   },
   "Libros": {
    "*": "Libros",
@@ -185,7 +185,7 @@
    "*": "Libros de investigación"
   },
   "Manuales y Guías Especializadas": {
-   "*": "Libros"
+   "*": ""
   },
   "Maquetas": {
    "*": ""
@@ -232,7 +232,9 @@
    "*": "Libros"
   },
   "Otros artículos publicados": {
-   "*": "Artículos"
+   "*": "",
+   "Revista de divulgación": "Artículos",
+   "Periódico de noticias": "Artículos"
   },
   "Otros productos tecnológicos": {
    "*": ""
@@ -295,7 +297,9 @@
    "*": "Regulación y norma protocolos de vigilancia epidemiológica"
   },
   "Prototipos": {
-   "*": "Prototipo Industrial"
+   "*": "Prototipo Industrial",
+   "Producción técnica - Prototipo - Servicios": "",
+   "Servicios": ""
   },
   "Proyectos": {
    "*": ""
@@ -343,15 +347,19 @@
    "*": "Talleres de creación"
   },
   "Textos en publicaciones no científicas": {
-   "*": "Artículos"
+   "*": "",
+   "Revista de divulgación": "Artículos",
+   "Periódico de noticias": "Artículos"
   },
   "Trabajos dirigidos/turorías": {
-   "*": "Tesis de pregrado",
+   "*": "",
+   "Trabajos de grado de pregrado": "Tesis de pregrado",
    "Tesis de doctorado": "Tesis de doctorado",
    "Trabajo de grado de maestría o especialidad clínica": "Tesis de maestria"
   },
   "Trabajos dirigidos/tutorías": {
-   "*": "Tesis de pregrado",
+   "*": "",
+   "Trabajos dirigidos/Tutorías - Trabajos de grado de pregrado": "Tesis de pregrado",
    "Trabajos dirigidos/Tutorías - Tesis de doctorado": "Tesis de doctorado",
    "Trabajos dirigidos/Tutorías - Trabajo de grado de maestría o especialidad clínica": "Tesis de maestria"
   },

@@ -17,6 +17,12 @@ def test_types_of_works_and_other_products():
     assert research == "Capítulos de libro de investigación"
     tesis = {"type": "Trabajos dirigidos/Tutorías - Tesis de doctorado"}
     assert minciencias_type("Trabajos dirigidos/tutorías", tesis) == "Tesis de doctorado"
+    for unclear in ("Iniciación Científica", "Trabajos dirigidos/Tutorías de otro tipo"):
+        assert minciencias_type("Trabajos dirigidos/tutorías", {"type": "Trabajos dirigidos/Tutorías - " + unclear}) == ""
+    pregrado = {"type": "Trabajos dirigidos/Tutorías - Trabajos de grado de pregrado"}
+    assert minciencias_type("Trabajos dirigidos/tutorías", pregrado) == "Tesis de pregrado"
+    assert minciencias_type("Otros artículos publicados", {"type": "Columna de opinión"}) == ""
+    assert minciencias_type("Otros artículos publicados", {"type": "Revista de divulgación"}) == "Artículos"
     assert minciencias_type("Secretos empresariales", {"type": "Any free text"}) == "Secreto empresarial"
     assert minciencias_type("Eventos", {"type": "Congreso"}) == ""
     assert minciencias_type("Proyectos", {"type": "Investigación y desarrollo"}) == ""
