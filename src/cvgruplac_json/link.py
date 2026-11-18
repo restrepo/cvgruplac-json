@@ -19,6 +19,8 @@ CvLAC product
 - {"source": "gruplac", "group": <COL code>}: one per GrupLAC product that lists this one as a verified cvlac id.
 - "id": the cvlac one.
 
+Both also get the product's Minciencias type as the last entry of "types" (minciencias.py).
+
 Ids are unique within a JSON: the n-th product with a repeated key gets "|n", and a candidate already used moves on to
 the next n.
 """
@@ -27,6 +29,7 @@ import hashlib
 import json
 from importlib.resources import files
 
+from .minciencias import add_minciencias_type
 from .product_hash import KINDS, title_key
 
 ID_KINDS = (*KINDS, "event")
@@ -148,6 +151,7 @@ def link_gruplac(data, cvlac_hashes=None, cvlac_cods=None):
                     cv.append({"id": h, "source": "cvlac", "verified": False})
         rid = (ids.take(cv[0]["id"]) if cv else None) or ids.new(rec, kind)
         _put(rec, rid, [*cv, {"id": rid, "source": "gruplac"}])
+        add_minciencias_type(section, rec)
         matches += [(x["id"], group, rid) for x in cv if "verified" not in x]
         c["products_with_cvlac_id" if cv else "products_gruplac_id_only"] += 1
         c["cvlac_ids_unverified"] += sum("verified" in x for x in cv)
@@ -161,11 +165,12 @@ def link_cvlac(data, gruplac_index=None):
     from link_gruplac."""
     cod = data["cod_rh"]
     ids, n_linked = _Ids(cod), 0
-    for _, kind, rec in products(data):
+    for section, kind, rec in products(data):
         h = next((a["product_hash"] for a in rec.get("authors") or [] if a.get("id") == cod and a.get("product_hash")), None)
         rid = ids.take(h) or ids.new(rec, kind)
         gr = [{"id": gid, "source": "gruplac", "group": g} for g, gid in (gruplac_index or {}).get(h, ())] if h else []
         _put(rec, rid, [{"id": rid, "source": "cvlac"}, *gr])
+        add_minciencias_type(section, rec)
         n_linked += bool(gr)
     data.setdefault("counts", {})["products_in_gruplac"] = n_linked
 
