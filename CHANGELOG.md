@@ -4,6 +4,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-18
+
 ### Added
 - Every product gets its Minciencias type as the last entry of `types`:
   `{"provenance": "cvgruplac", "source": "minciencias", "type": …, "level": 1}`, with ImpactU's level-1 names, from
@@ -42,7 +44,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
   product_hash recipe with the group code or the COD_RH and the extra kind `event`. Section pairing of CvLAC and
   GrupLAC in `data/sections.json`. Gzipped outputs are written at level 6.
 
-[Unreleased]: https://github.com/restrepo/cvgruplac-json/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/restrepo/cvgruplac-json/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/restrepo/cvgruplac-json/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/restrepo/cvgruplac-json/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/restrepo/cvgruplac-json/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/restrepo/cvgruplac-json/releases/tag/v0.1.0
