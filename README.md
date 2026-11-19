@@ -111,6 +111,11 @@ modelo de medición de Minciencias:
 - Los productos sin equivalente en Minciencias llevan `"type": ""`: eventos, proyectos, patentes, jurados, comités de
   evaluación, par evaluador, cursos de corta duración, traducciones, cartas y mapas, prólogos y otra producción
   bibliográfica, variedades, entre otros.
+- Los tipos propios del CvLAC o GrupLAC que no corresponden claramente a uno de Minciencias tampoco se mezclan con
+  uno parecido: se quedan solo con su tipo propio y `"type": ""`. Así pasa con las tutorías «de otro tipo», la
+  iniciación científica y las monografías de especialización (no son tesis de pregrado), las columnas de opinión,
+  reseñas de libros y cartas al editor, los manuales y guías especializadas, los libros de creación y los prototipos
+  de servicios.
 - La tabla se comprobó con los productos de la UdeA en ImpactU que comparten id de Scienti con un CvLAC o GrupLAC: en
   el 88.6 % de 73,355 productos el tipo de ImpactU es el de la tabla. Los libros resultado de investigación se reparten
   casi por igual entre `Libros de investigación` y `Libros`.

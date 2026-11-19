@@ -4,6 +4,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Changed
+- Types with no clear Minciencias equivalent keep only their own type and get `"type": ""` instead of a near one:
+  tutorías «de otro tipo», iniciación científica and specialization monographs (were `Tesis de pregrado`), opinion
+  columns, book reviews and letters to the editor (were `Artículos`), manuales y guías especializadas and libros de
+  creación (were `Libros`), and service prototypes (were `Prototipo Industrial`).
+
 ## [0.4.0] - 2026-11-18
 
 ### Added
